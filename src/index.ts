@@ -3,6 +3,7 @@ import { Client, GatewayIntentBits } from 'discord.js';
 import { config } from 'dotenv';
 import { loadCommands } from './commands';
 import { loadEvents } from './events';
+import cors from 'cors';
 
 // Load environment variables
 config();
@@ -23,6 +24,7 @@ loadEvents(client);
 
 // Express app for HTTP endpoints
 const app = express();
+app.use(cors()); // Allow all origins for development
 
 // Health check endpoint
 app.get('/', (req, res) => res.send('Discord bot is running!'));
